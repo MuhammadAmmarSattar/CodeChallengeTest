@@ -1,0 +1,95 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    namespace 'com.muhammad.codechallengetest'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.muhammad.codechallengetest"
+        minSdk 24
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.3.2'
+    }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+}
+
+dependencies {
+
+    implementation AndroidX.coreKtx
+    implementation AndroidX.lifecycleRuntimeKtx
+    //Compose
+    implementation platform(Compose.bomb)
+    implementation Compose.ui
+    implementation Compose.graphics
+    implementation Compose.uiToolingPreview
+    implementation Compose.material3
+    implementation Compose.runtimeLifeCycle
+    implementation Compose.saveState
+//    implementation Compose.navigation
+    implementation "androidx.navigation:navigation-compose:2.5.0"
+    implementation "androidx.core:core-splashscreen:1.0.0"
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.7.2'
+    //Compose View Model
+    implementation Compose.viewModelCompose
+
+    //Coil
+    implementation Common.coilCompose
+
+    // Dagger Hilt
+//    kapt DaggerHilt.hiltCompiler
+//    implementation DaggerHilt.hiltAndroid
+//    implementation DaggerHilt.hiltNavigationCompose
+
+
+    // Retrofit
+    implementation(Retrofit.okHttp)
+    implementation(Retrofit.retrofit)
+    implementation(Retrofit.okHttpLoggingInterceptor)
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
+    //Testing Junit and Mockito and compose
+
+    testImplementation Testing.junit4
+    androidTestImplementation Testing.junitAndroidExt
+    androidTestImplementation Testing.espresso
+    androidTestImplementation platform(Testing.composeBomb)
+    androidTestImplementation Testing.composeJunit4
+    debugImplementation Testing.composeTooling
+    debugImplementation Testing.composeManifest
+}
